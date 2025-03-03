@@ -38,3 +38,23 @@ SET
 ```
 DONE
 ```
+
+## Usage
+
+Compile using `mvn compile`.
+
+To run, run the following commands:
+
+```bash
+cd target/classes/
+
+# To run server
+java com.whodis.whodis.App
+
+# To run client
+java com.whodis.whodis.Client
+```
+
+**Default IP address and port:** 127.0.0.1, 8080
+
+

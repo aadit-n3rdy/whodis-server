@@ -49,12 +49,11 @@ public class Handler implements Runnable {
                     if (command.equals("GET")) {
                         byte[] val = cs.get(key);
                         if (val == null) {
-                            bw.write("NOT FOUND");
+                            bw.write("NOT FOUND\n");
                         } else {
                             String encoded = Base64.getEncoder().encodeToString(val);
                             System.out.println("Getting " + key + " as " + encoded);
                             bw.write(encoded + "\n");
-                            bw.write("DONE");
                         }
                         bw.flush();
                     } else if (command.equals("SET")) {
@@ -66,11 +65,13 @@ public class Handler implements Runnable {
                         bw.flush();
                     } else {
                         System.err.println("Unknown command \"" + command + "\"");
+                        bw.flush();
                         break;
                     }
                 }
             } catch (IOException e) {
                 bw.write("FAIL\n");
+                bw.flush();
                 System.out.println(e);
                 return;
             } finally {
